@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8" />
-    <title th:text="${title}">Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
 <h1 th:text="${title}">Default Title</h1>
 
-<form method="post">
-    <input type="text" name="articleName" />
+    <nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;" th:object="${article}">
+    <div class="form-group">
+        <label th:for="articleTitle">Article Title</label>
+        <input class="form-control" th:field="*{articleTitle}" />
+        <span th:errors="*{articleTitle}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="articleContent">Article Content</label>
+        <input class="form-control" th:field="*{articleContent}" />
+        <span th:errors="*{articleContent}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="category">Category</label>
+        <select name="categoryId">
+            <option th:each="category : ${categories}"
+                    th:text="${category.name}"
+                    th:value="${category.id}"></option>
+        </select>
+    </div>
+
     <input type="submit" value="Post Article" />
 </form>
 

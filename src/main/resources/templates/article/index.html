@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8" />
-    <title th:text="${title}">Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
     <h1 th:text="${title}">Default Title</h1>
+
+    <nav th:replace="fragments :: navigation"></nav>
 
     <p th:unless="${articles} and ${articles.size()}">There are no articles posted yet.</p>
 
-    <a href="/article/post">Post Article</a>
-<!--test-->
-    <ul>
-        <li th:each="article : ${articles}" th:text="${article}"></li>
-    </ul>
+    <table class="table">
+
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Category</th>
+        </tr>
+
+        <tr th:each="article : ${articles}">
+            <td th:text="${article.articleTitle}"></td>
+            <td th:text="${article.articleContent}"></td>
+            <td th:text="${article.category.name}"></td>
+        </tr>
+
+    </table>
+
 </body>
 </html>
