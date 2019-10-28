@@ -2,8 +2,10 @@ package org.launchcode.controllers;
 
 import org.launchcode.models.Article;
 import org.launchcode.models.Category;
+import org.launchcode.models.Rating;
 import org.launchcode.models.data.ArticleDao;
 import org.launchcode.models.data.CategoryDao;
+import org.launchcode.models.data.RatingDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,9 @@ public class ArticleController {
 
     @Autowired
     CategoryDao categoryDao;
+
+    @Autowired
+    RatingDao ratingDao;
 
     // Request path: /article
     @RequestMapping(value = "")
@@ -81,6 +86,38 @@ public class ArticleController {
         model.addAttribute("articles", articles);
         model.addAttribute("title", "Articles in Category: " + cat.getName());
         return "article/index";
+    }
+
+    @RequestMapping(value="view/{articleId}", method = RequestMethod.GET)
+    public String displayViewArticle(Model model, @PathVariable int articleId) {
+        Article articleToView = articleDao.findById(articleId).orElse(null);
+        model.addAttribute("articleTitle", articleToView.getArticleTitle());
+        model.addAttribute("articleContent", articleToView.getArticleContent());
+
+        return "article/view";
+    }
+
+    @RequestMapping(value = "view/{articleId}", method = RequestMethod.POST)
+    public String displayEditArticleForm(Model model, @PathVariable int articleId) {
+        Article articleToEdit = articleDao.findById(articleId).orElse(null);
+        model.addAttribute("articleCategories", categoryDao.findAll());
+        model.addAttribute("title", "Edit Article " + articleToEdit.getArticleTitle() + " (id=" + articleToEdit.getId() + ")");
+        model.addAttribute("articleToEdit", articleToEdit);
+
+        return "article/edit";
+    }
+    //test 123
+    @RequestMapping(value = "edit/{articleToEdit}" , method = RequestMethod.POST)
+    public String processEditArticleForm(int articleId, String articleTitle, String articleContent, Category category, int ratingId,
+                                         int overall, int fact, int opinion, int bias) {
+        Article articleToEdit = articleDao.findById(articleId).orElse(null);
+        Rating ratingToEdit = ratingDao.findById(ratingId).orElse(null);
+        articleToEdit.setArticleTitle(articleTitle);
+        articleToEdit.setArticleContent(articleContent);
+        articleToEdit.setCategory(category);
+        ratingToEdit.setRating(overall, fact, opinion, bias);
+
+        return "redirect:/article";
     }
 
 }

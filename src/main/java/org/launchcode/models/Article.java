@@ -3,6 +3,7 @@ package org.launchcode.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,10 @@ public class Article {
 
     @ManyToMany(mappedBy = "articles")
     private List<CuratedTopic> curatedTopics;
+
+    @OneToMany
+    @JoinColumn(name = "article_id")
+    private List<Rating> ratings = new ArrayList<>();
 
     public Article(String articleTitle, String articleContent) {
         this.articleTitle = articleTitle;
@@ -60,6 +65,10 @@ public class Article {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
     }
 
 }

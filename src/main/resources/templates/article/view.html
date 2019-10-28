@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${ratings} and ${ratings.size()}">There are no ratings yet. Be the first to rate it!</p>
+
+<table class="table">
+
+
+    <tr>
+        <td th:text="${articleTitle}"></td>
+    </tr>
+
+    <tr>
+        <td th:text="${articleContent}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

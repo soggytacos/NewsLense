@@ -18,7 +18,7 @@
         </tr>
 
         <tr th:each="article : ${articles}">
-            <td th:text="${article.articleTitle}"></td>
+            <td><a th:href="'/article/view/' + ${article.id}" th:text="${article.articleTitle}">Link</a></td>
             <td th:text="${article.articleContent}"></td>
             <td th:text="${article.category.name}"></td>
         </tr>
