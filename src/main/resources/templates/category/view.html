@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+<h1 th:text="${category.name}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${articles} and ${articles.size()}">There are no articles posted yet.</p>
+
+<table class="table">
+
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+    </tr>
+
+    <tr th:each="article : ${articles}">
+        <td><a th:href="'/article/view/' + ${article.id}" th:text="${article.articleTitle}">Link</a></td>
+        <td th:text="${article.articleContent}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

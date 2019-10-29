@@ -7,8 +7,6 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<p th:unless="${ratings} and ${ratings.size()}">There are no ratings yet. Be the first to rate it!</p>
-
 <table class="table">
 
 
@@ -21,6 +19,21 @@
     </tr>
 
 </table>
+<table>
+    <tr>
+        <td>Overall  |  </td>
+        <td>Fact  |  </td>
+        <td>Opinion  |  </td>
+        <td>Bias</td>
+    </tr>
+    <tr th:each="rating : ${ratings}">
+        <td><a th:text="${rating.overall}"></a></td>
+        <td><a th:text="${rating.fact}"></a></td>
+        <td><a th:text="${rating.opinion}"></a></td>
+        <td><a th:text="${rating.bias}"></a></td>
+    </tr>
+</table>
+<p th:unless="${ratings} and ${ratings.size()}">There are no ratings yet. Be the first to rate it!</p>
 
 </body>
 </html>

@@ -93,18 +93,20 @@ public class ArticleController {
         Article articleToView = articleDao.findById(articleId).orElse(null);
         model.addAttribute("articleTitle", articleToView.getArticleTitle());
         model.addAttribute("articleContent", articleToView.getArticleContent());
+        model.addAttribute("ratings", articleToView.getRatings());
 
         return "article/view";
     }
 
     @RequestMapping(value = "view/{articleId}", method = RequestMethod.POST)
     public String displayEditArticleForm(Model model, @PathVariable int articleId) {
-        Article articleToEdit = articleDao.findById(articleId).orElse(null);
+        Article articleToView = articleDao.findById(articleId).orElse(null);
         model.addAttribute("articleCategories", categoryDao.findAll());
-        model.addAttribute("title", "Edit Article " + articleToEdit.getArticleTitle() + " (id=" + articleToEdit.getId() + ")");
-        model.addAttribute("articleToEdit", articleToEdit);
+        model.addAttribute("title", "Edit Article " + articleToView.getArticleTitle() + " (id=" + articleToView.getId() + ")");
+        model.addAttribute("articleToEdit", articleToView);
+        model.addAttribute("ratings", articleToView.getRatings());
 
-        return "article/edit";
+        return "article/view";
     }
     //test 123
     @RequestMapping(value = "edit/{articleToEdit}" , method = RequestMethod.POST)
