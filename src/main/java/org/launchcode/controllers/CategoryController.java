@@ -52,12 +52,12 @@ public class CategoryController {
         return "redirect:";
     }
 
-    @RequestMapping(value = "/{category.name}", method = RequestMethod.GET)
-    public String displayCategoryArticles(@PathVariable int categoryId Model model) {
-        model.addAttribute("category", category);
-        model.addAttribute("articles", category.getArticles());
-
-        return "redirect:/category/view";
-    }
+//    @RequestMapping(value = "/{category.categoryId}", method = RequestMethod.GET)
+//    public String displayCategoryArticles(@PathVariable int category, Model model) {
+//        model.addAttribute("category", category);
+//        model.addAttribute("articles", category.getArticles());
+//
+//        return "redirect:/category/view";
+//    }
 
 }

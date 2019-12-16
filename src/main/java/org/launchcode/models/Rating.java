@@ -3,7 +3,8 @@ package org.launchcode.models;
 /**
  * Created by LaunchCode
  */
-
+//I'm going to add functionality to this feature. This is a test statement that can be deleted anytime.
+//testing the adding of content to the develop/feature/ratings branch. This comment can be deleted.
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
