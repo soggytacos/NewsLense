@@ -1,9 +1,5 @@
 package org.launchcode.models;
 
-/**
- * Created by LaunchCode
- */
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
