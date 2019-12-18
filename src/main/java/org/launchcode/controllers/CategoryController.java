@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-/**
- * Created by LaunchCode
- */
 @Controller
 @RequestMapping("category")
 public class CategoryController {

@@ -31,10 +31,8 @@ public class ArticleController {
     // Request path: /article
     @RequestMapping(value = "")
     public String index(Model model) {
-
         model.addAttribute("articles", articleDao.findAll());
         model.addAttribute("title", "My Articles");
-
         return "article/index";
     }
 
@@ -94,7 +92,6 @@ public class ArticleController {
         model.addAttribute("articleTitle", articleToView.getArticleTitle());
         model.addAttribute("articleContent", articleToView.getArticleContent());
         model.addAttribute("ratings", articleToView.getRatings());
-
         return "article/view";
     }
 
@@ -105,7 +102,6 @@ public class ArticleController {
         model.addAttribute("title", "Edit Article " + articleToView.getArticleTitle() + " (id=" + articleToView.getId() + ")");
         model.addAttribute("articleToEdit", articleToView);
         model.addAttribute("ratings", articleToView.getRatings());
-
         return "article/view";
     }
     //test 123
@@ -118,7 +114,6 @@ public class ArticleController {
         articleToEdit.setArticleContent(articleContent);
         articleToEdit.setCategory(category);
         ratingToEdit.setRating(overall, fact, opinion, bias);
-
         return "redirect:/article";
     }
 

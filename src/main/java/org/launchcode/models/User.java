@@ -1,10 +1,21 @@
 package org.launchcode.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue
+    private int userId;
 
     @NotNull
     @Size(min=5, max=20)
@@ -17,12 +28,21 @@ public class User {
     @Size(min=6, max=20)
     private String password;
 
+    @DateTimeFormat
+    private Date dateCreated;
+
     public User() {}
 
     public User(String username, String email, String password) {
+        Date date = new Date();
         this.username = username;
         this.email = email;
         this.password = password;
+        this.dateCreated = date;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 
     public String getUsername() {
@@ -47,5 +67,9 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
     }
 }
