@@ -4,10 +4,24 @@
 
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
-<h1 th:text="${title}">Default Title</h1>
+    <h1 th:text="${title}">Default Title</h1>
 <!--adding a fragment from the fragments file for navigation buttons-->
-<nav th:replace="fragments :: navigation"></nav>
+    <nav th:replace="fragments :: navigation"></nav>
 
+    <table class="table">
+
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>User Since</th>
+        </tr>
+        <tr>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.dateCreated}"></td>
+        </tr>
+
+    </table>
 <!-- if the action (action="/article/post") attribute is not included in the form after the method attribute
 the default action is to submit the form to the same url as the current form -->
 
