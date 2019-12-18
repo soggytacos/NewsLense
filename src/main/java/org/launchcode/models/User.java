@@ -31,7 +31,9 @@ public class User {
     @DateTimeFormat
     private Date dateCreated;
 
-    public User() {}
+    public User() {
+        this.dateCreated = new Date();
+    }
 
     public User(String username, String email, String password) {
         Date date = new Date();
@@ -69,7 +71,7 @@ public class User {
         this.password = password;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+    public String getDateCreated() {
+        return dateCreated.toString();
     }
 }

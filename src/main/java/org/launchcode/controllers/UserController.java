@@ -24,7 +24,9 @@ public class UserController {
     public String viewProfile(Model model, @PathVariable int userId) {
         User user = userDao.findById(userId).orElse(null);
         model.addAttribute("title", "Welcome!");
-        model.addAttribute("user", user);
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("dateCreated", user.getDateCreated());
         return "user/profile";
     }
 
@@ -56,7 +58,7 @@ public class UserController {
             model.addAttribute(user);
             userDao.save(user);
             model.addAttribute("title", "Welcome " + user.getUsername() + "!");
-            return "user/profile";
+            return "redirect:profile/" + user.getUserId();
         }
     }
 
