@@ -19,6 +19,8 @@
     </tr>
 
 </table>
+<p th:unless="${ratings} and ${ratings.size()}">There are no ratings yet. Be the first to rate it!</p>
+<a th:href="'/article/rate/' + ${articleId}">Rate this article</a>
 <table>
     <tr>
         <td>Overall  |  </td>
@@ -33,7 +35,6 @@
         <td><a th:text="${rating.bias}"></a></td>
     </tr>
 </table>
-<p th:unless="${ratings} and ${ratings.size()}">There are no ratings yet. Be the first to rate it!</p>
 
 </body>
 </html>
