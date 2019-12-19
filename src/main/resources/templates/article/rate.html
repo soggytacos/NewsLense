@@ -7,37 +7,69 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-
 <form method="post" style="max-width:600px;" th:object="${rating}">
-    <div class="form-group">
-        <label th:for="overall">Overall</label>
-        <input class="form-control" th:field="*{overall}" />
+    <span th:field="*{overall}" class="form-group">
+        <label th:for="overall">What's you're overall rating of this article?</label></br>
+        <input type="radio" name="overall" value="0" checked="checked"><i></i>
+        <input type="radio" name="overall" value="1"><i></i>
+        <input type="radio" name="overall" value="2"><i></i>
+        <input type="radio" name="overall" value="3"><i></i>
+        <input type="radio" name="overall" value="4"><i></i>
+        <input type="radio" name="overall" value="5"><i></i>
         <span th:errors="*{overall}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="fact">Fact</label>
-        <input class="form-control" th:field="*{fact}" />
+    </span></br>
+    <span th:field="*{fact}" class="form-group">
+        <label th:for="fact">How factual was this article?</label></br>
+        <input type="radio" name="fact" value="0" checked="checked"><i></i>
+        <input type="radio" name="fact" value="1"><i></i>
+        <input type="radio" name="fact" value="2"><i></i>
+        <input type="radio" name="fact" value="3"><i></i>
+        <input type="radio" name="fact" value="4"><i></i>
+        <input type="radio" name="fact" value="5"><i></i>
         <span th:errors="*{fact}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="opinion">Opinion</label>
-        <input class="form-control" th:field="*{opinion}" />
-        <span th:errors="*{opinion}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="bias">Bias</label>
-        <input class="form-control" th:field="*{bias}" />
+    </span></br>
+    <span th:field="*{bias}" class="form-group">
+        <label th:for="bias">How biased was this article to a particular viewpoint?</label></br>
+        <input type="radio" name="bias" value="0" checked="checked"><i></i>
+        <input type="radio" name="bias" value="1"><i></i>
+        <input type="radio" name="bias" value="2"><i></i>
+        <input type="radio" name="bias" value="3"><i></i>
+        <input type="radio" name="bias" value="4"><i></i>
+        <input type="radio" name="bias" value="5"><i></i>
         <span th:errors="*{bias}" class="error"></span>
-    </div>
+    </span></br>
+    <span th:field="*{opinion}" class="form-group">
+        <label th:for="opinion">How much of the author's opinion was conveyed in the article?</label></br>
+        <input type="radio" name="opinion" value="0" checked="checked"><i></i>
+        <input type="radio" name="opinion" value="1"><i></i>
+        <input type="radio" name="opinion" value="2"><i></i>
+        <input type="radio" name="opinion" value="3"><i></i>
+        <input type="radio" name="opinion" value="4"><i></i>
+        <input type="radio" name="opinion" value="5"><i></i>
+        <span th:errors="*{opinion}" class="error"></span>
+    </span></br>
+    <!--    <div class="form-group">-->
+    <!--        <label th:for="overall">Overall</label>-->
+    <!--        <input class="form-control" th:field="*{overall}" />-->
+    <!--        <span th:errors="*{overall}" class="error"></span>-->
+    <!--    </div>-->
 <!--    <div class="form-group">-->
-<!--        <label th:for="article">Category</label>-->
-<!--        <select name="articleId">-->
-<!--            <option th:each="article : ${articles}"-->
-<!--                    th:text="${article.articleTitle}"-->
-<!--                    th:value="${article.id}"></option>-->
-<!--        </select>-->
+<!--        <label th:for="fact">Fact</label>-->
+<!--        <input class="form-control" th:field="*{fact}"/>-->
+<!--        <span th:errors="*{fact}" class="error"></span>-->
 <!--    </div>-->
-    <input type="submit" value="Submit Rating" />
+<!--    <div class="form-group">-->
+<!--        <label th:for="opinion">Opinion</label>-->
+<!--        <input class="form-control" th:field="*{opinion}"/>-->
+<!--        <span th:errors="*{opinion}" class="error"></span>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label th:for="bias">Bias</label>-->
+<!--        <input class="form-control" th:field="*{bias}"/>-->
+<!--        <span th:errors="*{bias}" class="error"></span>-->
+<!--    </div>-->
+
+    <input type="submit" value="Submit Rating"/>
 </form>
 
 </body>
