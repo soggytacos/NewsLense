@@ -22,8 +22,8 @@ public class Category {
     private String description;
 
     @OneToMany
-    @JoinColumn(name = "category_id")
-    private List<Article> articles = new ArrayList<>();
+    @JoinColumn(name = "article_id")
+    private List<Article> articles;
 
     public Category() {}
 

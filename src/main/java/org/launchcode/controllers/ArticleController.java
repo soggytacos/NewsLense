@@ -3,9 +3,11 @@ package org.launchcode.controllers;
 import org.launchcode.models.Article;
 import org.launchcode.models.Category;
 import org.launchcode.models.Rating;
+import org.launchcode.models.User;
 import org.launchcode.models.data.ArticleDao;
 import org.launchcode.models.data.CategoryDao;
 import org.launchcode.models.data.RatingDao;
+import org.launchcode.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,26 +97,25 @@ public class ArticleController {
         return "article/view";
     }
 
-    @RequestMapping(value = "view/{articleId}", method = RequestMethod.POST)
-    public String displayEditArticleForm(Model model, @PathVariable int articleId) {
-        Article articleToView = articleDao.findById(articleId).orElse(null);
-        model.addAttribute("articleCategories", categoryDao.findAll());
-        model.addAttribute("title", "Edit Article " + articleToView.getArticleTitle() + " (id=" + articleToView.getId() + ")");
-        model.addAttribute("articleToEdit", articleToView);
-        model.addAttribute("ratings", articleToView.getRatings());
-        return "article/view";
-    }
-    //test 123
-    @RequestMapping(value = "edit/{articleToEdit}" , method = RequestMethod.POST)
-    public String processEditArticleForm(int articleId, String articleTitle, String articleContent, Category category, int ratingId,
-                                         int overall, int fact, int opinion, int bias) {
-        Article articleToEdit = articleDao.findById(articleId).orElse(null);
-        Rating ratingToEdit = ratingDao.findById(ratingId).orElse(null);
-        articleToEdit.setArticleTitle(articleTitle);
-        articleToEdit.setArticleContent(articleContent);
-        articleToEdit.setCategory(category);
-        ratingToEdit.setRating(overall, fact, opinion, bias);
-        return "redirect:/article";
+    @RequestMapping(value="rate/{articleId}", method = RequestMethod.GET)
+    public String displayRateArticleForm(Model model, @PathVariable int articleId) {
+        Article articleToRate = articleDao.findById(articleId).orElse(null);
+        model.addAttribute("title", "Rate Article: " + articleToRate.getArticleTitle());
+        model.addAttribute("articleId", articleId);
+        model.addAttribute(new Rating());
+        return "article/rate";
     }
 
+    @RequestMapping(value = "rate/{articleId}" , method = RequestMethod.POST)
+    public String processRateArticleForm(@ModelAttribute @Valid Rating newRating, Errors errors,
+                                         @PathVariable int articleId, Model model) {
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Rate Article");
+            return "article/rate";
+        }
+        Article article = articleDao.findById(articleId).orElse(null);
+        newRating.setArticle(article);
+        ratingDao.save(newRating);
+        return "redirect:/article/view/" + articleId;
+    }
 }

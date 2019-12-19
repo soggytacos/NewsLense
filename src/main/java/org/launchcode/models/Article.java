@@ -22,14 +22,14 @@ public class Article {
     private String articleContent;
 
     @ManyToOne
-    private Category category;
+    private Category category; //an article can belong to several categories and a category can be assigned to many articles
 
     @ManyToMany(mappedBy = "articles")
-    private List<CuratedTopic> curatedTopics;
+    private List<CuratedTopic> curatedTopics; //article can be assigned to many curated topics.
 
     @OneToMany
     @JoinColumn(name = "article_id")
-    private List<Rating> ratings = new ArrayList<>();
+    private List<Rating> ratings = new ArrayList<>(); //article can have many ratings. each rating assigned to on article.
 
     public Article(String articleTitle, String articleContent) {
         this.articleTitle = articleTitle;
@@ -41,6 +41,10 @@ public class Article {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getArticleTitle() {

@@ -2,13 +2,13 @@ package org.launchcode.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User {
@@ -30,6 +30,10 @@ public class User {
 
     @DateTimeFormat
     private Date dateCreated;
+
+//    @OneToMany
+//    @JoinColumn(name = "user_id")
+//    private List<Rating> ratings = new ArrayList<>(); //a user can create many ratings. each rating will be assigned to a single user.
 
     public User() {
         this.dateCreated = new Date();

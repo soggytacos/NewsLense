@@ -1,5 +1,5 @@
 package org.launchcode.models.data;
-// Article Data Access Object. Interface by which we interact with the database.
+// Rating Data Access Object. Interface by which we interact with the database.
 
 import org.launchcode.models.Rating;
 import org.springframework.data.repository.CrudRepository; //specifies the methods that allow database interaction.

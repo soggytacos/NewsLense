@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+
+<form method="post" style="max-width:600px;" th:object="${rating}">
+    <div class="form-group">
+        <label th:for="overall">Overall</label>
+        <input class="form-control" th:field="*{overall}" />
+        <span th:errors="*{overall}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="fact">Fact</label>
+        <input class="form-control" th:field="*{fact}" />
+        <span th:errors="*{fact}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="opinion">Opinion</label>
+        <input class="form-control" th:field="*{opinion}" />
+        <span th:errors="*{opinion}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="bias">Bias</label>
+        <input class="form-control" th:field="*{bias}" />
+        <span th:errors="*{bias}" class="error"></span>
+    </div>
+<!--    <div class="form-group">-->
+<!--        <label th:for="article">Category</label>-->
+<!--        <select name="articleId">-->
+<!--            <option th:each="article : ${articles}"-->
+<!--                    th:text="${article.articleTitle}"-->
+<!--                    th:value="${article.id}"></option>-->
+<!--        </select>-->
+<!--    </div>-->
+    <input type="submit" value="Submit Rating" />
+</form>
 
 </body>
 </html>

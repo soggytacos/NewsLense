@@ -5,10 +5,6 @@ package org.launchcode.models;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Rating {
@@ -33,19 +29,22 @@ public class Rating {
     @Min(0)
     private int bias;
 
+//    @ManyToOne
+//    private User user; //a rating is owned by a single user. Each user can own many ratings.
+
     @ManyToOne
-    private Article article;
+    private Article article; // a rating is assigned to a single article. an article can own many ratings.
 
     public Rating() {}
-
+    //creates a Rating object
     public Rating(int overall, int fact, int opinion, int bias) {
         this.overall = overall;
         this.fact = fact;
         this.opinion = opinion;
         this.bias = bias;
     }
-
-    public void setRating(int overall, int fact, int opinion, int bias) {
+    //If a user needs to edit a rating
+    public void editRating(int overall, int fact, int opinion, int bias) {
         this.overall = overall;
         this.fact = fact;
         this.opinion = opinion;
@@ -94,5 +93,17 @@ public class Rating {
 
     public Article getArticle() {
         return article;
+    }
+
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+////        this.user = user;
+//    }
+
+    public void setArticle(Article article) {
+        this.article = article;
     }
 }
