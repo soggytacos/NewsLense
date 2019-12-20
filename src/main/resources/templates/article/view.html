@@ -28,11 +28,17 @@
         <td>Opinion  |  </td>
         <td>Bias</td>
     </tr>
+    <tr>
+        <td th:text="${overallRating}"></td>
+        <td th:text="${factRating}"></td>
+        <td th:text="${opinionRating}"></td>
+        <td th:text="${biasRating}"></td>
+    </tr>
     <tr th:each="rating : ${ratings}">
-        <td><a th:text="${rating.overall}"></a></td>
-        <td><a th:text="${rating.fact}"></a></td>
-        <td><a th:text="${rating.opinion}"></a></td>
-        <td><a th:text="${rating.bias}"></a></td>
+        <td th:text="${rating.overall}"></td>
+        <td th:text="${rating.fact}"></td>
+        <td th:text="${rating.opinion}"></td>
+        <td th:text="${rating.bias}"></td>
     </tr>
 </table>
 

@@ -15,6 +15,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -91,9 +92,18 @@ public class ArticleController {
     @RequestMapping(value="view/{articleId}", method = RequestMethod.GET)
     public String displayViewArticle(Model model, @PathVariable int articleId) {
         Article articleToView = articleDao.findById(articleId).orElse(null);
+        ArrayList<Double> ratingSummary = articleToView.getRatingSummary();
+        double overallRating = ratingSummary.get(0);
+        double factRating = ratingSummary.get(1);
+        double opinionRating = ratingSummary.get(2);
+        double biasRating = ratingSummary.get(3);
         model.addAttribute("articleTitle", articleToView.getArticleTitle());
         model.addAttribute("articleContent", articleToView.getArticleContent());
         model.addAttribute("ratings", articleToView.getRatings());
+        model.addAttribute("overallRating", overallRating);
+        model.addAttribute("factRating", factRating);
+        model.addAttribute("opinionRating", opinionRating);
+        model.addAttribute("biasRating", biasRating);
         return "article/view";
     }
 

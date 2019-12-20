@@ -75,4 +75,28 @@ public class Article {
         return ratings;
     }
 
+    public ArrayList<Double> getRatingSummary() {
+        ArrayList<Double> ratingSummary = new ArrayList<>();
+        double overallTotal = 0;
+        double factTotal = 0;
+        double opinionTotal = 0;
+        double biasTotal = 0;
+        for (Rating r : ratings) {
+            overallTotal += r.getOverall();
+            factTotal += r.getFact();
+            opinionTotal += r.getOpinion();
+            biasTotal += r.getBias();
+        }
+        overallTotal = overallTotal / ratings.size();
+        factTotal = factTotal / ratings.size();
+        opinionTotal = opinionTotal /ratings.size();
+        biasTotal = biasTotal / ratings.size();
+        ratingSummary.add(overallTotal);
+        ratingSummary.add(factTotal);
+        ratingSummary.add(opinionTotal);
+        ratingSummary.add(biasTotal);
+
+        return ratingSummary;
+    }
+
 }
