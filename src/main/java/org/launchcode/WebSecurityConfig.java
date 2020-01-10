@@ -8,6 +8,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/*
+This configuration creates a Servlet Filter called springSecurityFilterChain, responsible for protecting the application
+URLs and validating credential submission. refer to javatpoint.com/spring-security-java-example. This Java configuration
+requires authentication for every URL, creates a login form, allows user to authenticate using form based authentication
+allows logout, prevents CSRF attacks, and security header integration.
+ */
 @EnableWebSecurity
 @ComponentScan("org.launchcode")
 public class WebSecurityConfig implements WebMvcConfigurer {
