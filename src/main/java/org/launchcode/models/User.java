@@ -6,30 +6,48 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
-    @NotNull
-    @Size(min=5, max=20)
-    private String username;
-
-    @Email
+    @NotNull(message = "please provide an email")
+    @Email(message = "please provide a valid email")
     private String email;
 
-    @NotNull
+    @NotNull(message = "You must create a password between 6 and 20 characters long.")
     @Size(min=6, max=20)
     private String password;
 
     @DateTimeFormat
     private Date dateCreated;
+
+    @NotNull(message = "please provide a unique username")
+    @Size(min=5, max=20)
+    private String username;
+
+    private int active;
+
+    @NotNull
+    private String firstName;
+
+    @NotNull
+    private String lastName;
+
+    @NotNull
+    private Date birthday;
+
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
 //    @OneToMany
 //    @JoinColumn(name = "user_id")
@@ -45,6 +63,14 @@ public class User {
         this.email = email;
         this.password = password;
         this.dateCreated = date;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public int getUserId() {
@@ -77,5 +103,45 @@ public class User {
 
     public String getDateCreated() {
         return dateCreated.toString();
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
