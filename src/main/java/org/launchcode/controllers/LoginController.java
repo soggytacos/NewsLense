@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping
 public class LoginController {
 
     @Autowired

@@ -29,15 +29,16 @@ public class Rating {
     @Min(0)
     private int bias;
 
-//    @ManyToOne
-//    private User user; //a rating is owned by a single user. Each user can own many ratings.
+    @ManyToOne
+    private User user; //a rating is owned by a single user. Each user can own many ratings.
 
     @ManyToOne
     private Article article; // a rating is assigned to a single article. an article can own many ratings.
 
     public Rating() {}
     //creates a Rating object
-    public Rating(int overall, int fact, int opinion, int bias) {
+    public Rating(User user, int overall, int fact, int opinion, int bias) {
+        this.user = user;
         this.overall = overall;
         this.fact = fact;
         this.opinion = opinion;
@@ -95,13 +96,13 @@ public class Rating {
         return article;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-////        this.user = user;
-//    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public void setArticle(Article article) {
         this.article = article;

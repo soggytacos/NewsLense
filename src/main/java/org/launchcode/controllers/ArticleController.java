@@ -3,9 +3,11 @@ package org.launchcode.controllers;
 import org.launchcode.models.classes.Article;
 import org.launchcode.models.classes.Category;
 import org.launchcode.models.classes.Rating;
+import org.launchcode.models.classes.User;
 import org.launchcode.models.data.ArticleDao;
 import org.launchcode.models.data.CategoryDao;
 import org.launchcode.models.data.RatingDao;
+import org.launchcode.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,9 @@ public class ArticleController {
 
     @Autowired
     RatingDao ratingDao;
+
+    @Autowired
+    UserDao userDao;
 
     // Request path: /article
     @RequestMapping(value = "")
@@ -107,8 +112,9 @@ public class ArticleController {
     }
 
     @RequestMapping(value="rate/{articleId}", method = RequestMethod.GET)
-    public String displayRateArticleForm(Model model, @PathVariable int articleId) {
+    public String displayRateArticleForm(Model model, @PathVariable int articleId, @RequestParam String email) {
         Article articleToRate = articleDao.findById(articleId).orElse(null);
+        User user = userDao.findByEmail(email);
         model.addAttribute("title", "Rate Article: " + articleToRate.getArticleTitle());
         model.addAttribute("articleId", articleId);
         model.addAttribute(new Rating());

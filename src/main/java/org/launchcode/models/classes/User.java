@@ -9,7 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -53,9 +55,9 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-//    @OneToMany
-//    @JoinColumn(name = "user_id")
-//    private List<Rating> ratings = new ArrayList<>(); //a user can create many ratings. each rating will be assigned to a single user.
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Rating> ratings = new ArrayList<>(); //a user can create many ratings. each rating will be assigned to a single user.
 
     public User() {
 //        this.dateCreated = new Date();
@@ -149,5 +151,9 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
     }
 }
