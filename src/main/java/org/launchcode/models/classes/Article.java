@@ -1,4 +1,4 @@
-package org.launchcode.models;
+package org.launchcode.models.classes;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

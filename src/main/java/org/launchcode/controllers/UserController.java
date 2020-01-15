@@ -1,6 +1,6 @@
 package org.launchcode.controllers;
 
-import org.launchcode.models.User;
+import org.launchcode.models.classes.User;
 import org.launchcode.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +21,12 @@ public class UserController {
     UserDao userDao;
 
     @RequestMapping(value="profile/{userId}", method = RequestMethod.GET)
-    public String viewProfile(Model model, @PathVariable int userId) {
+    public String viewProfile(Model model, @PathVariable Long userId) {
         User user = userDao.findById(userId).orElse(null);
         model.addAttribute("title", "Welcome!");
         model.addAttribute("username", user.getUsername());
         model.addAttribute("email", user.getEmail());
-        model.addAttribute("dateCreated", user.getDateCreated());
+        //model.addAttribute("dateCreated", user.getDateCreated());
         return "user/profile";
     }
 

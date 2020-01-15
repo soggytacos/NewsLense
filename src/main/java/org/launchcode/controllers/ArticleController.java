@@ -1,13 +1,11 @@
 package org.launchcode.controllers;
 
-import org.launchcode.models.Article;
-import org.launchcode.models.Category;
-import org.launchcode.models.Rating;
-import org.launchcode.models.User;
+import org.launchcode.models.classes.Article;
+import org.launchcode.models.classes.Category;
+import org.launchcode.models.classes.Rating;
 import org.launchcode.models.data.ArticleDao;
 import org.launchcode.models.data.CategoryDao;
 import org.launchcode.models.data.RatingDao;
-import org.launchcode.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +32,7 @@ public class ArticleController {
     // Request path: /article
     @RequestMapping(value = "")
     public String index(Model model) {
+
         model.addAttribute("articles", articleDao.findAll());
         model.addAttribute("title", "My Articles");
         return "article/index";

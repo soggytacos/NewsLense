@@ -1,5 +1,8 @@
-package org.launchcode.models;
+package org.launchcode.models.classes;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -7,28 +10,29 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
-
+@Data
+@Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private Long userId;
 
     @NotNull(message = "please provide an email")
     @Email(message = "please provide a valid email")
     private String email;
 
     @NotNull(message = "You must create a password between 6 and 20 characters long.")
-    @Size(min=6, max=20)
+    @Size(min=6)
     private String password;
 
-    @DateTimeFormat
-    private Date dateCreated;
+//    @DateTimeFormat
+//    private Date dateCreated;
 
     @NotNull(message = "please provide a unique username")
     @Size(min=5, max=20)
@@ -42,8 +46,8 @@ public class User {
     @NotNull
     private String lastName;
 
-    @NotNull
-    private Date birthday;
+//    @NotNull
+//    private Date birthday;
 
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -54,26 +58,28 @@ public class User {
 //    private List<Rating> ratings = new ArrayList<>(); //a user can create many ratings. each rating will be assigned to a single user.
 
     public User() {
-        this.dateCreated = new Date();
+//        this.dateCreated = new Date();
     }
 
-    public User(String username, String email, String password) {
-        Date date = new Date();
+    public User(String firstName, String lastName, String username, String email, String password) {
+//        Date date = new Date();
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.dateCreated = date;
+//        this.dateCreated = date;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
+//    public void setDateCreated(Date dateCreated) {
+////        this.dateCreated = dateCreated;
+//    }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -101,9 +107,9 @@ public class User {
         this.password = password;
     }
 
-    public String getDateCreated() {
-        return dateCreated.toString();
-    }
+//    public String getDateCreated() {
+////        return dateCreated.toString();
+//    }
 
     public String getFirstName() {
         return firstName;
@@ -121,13 +127,13 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
+//    public Date getBirthday() {
+//        return birthday;
+//    }
+//
+//    public void setBirthday(Date birthday) {
+//        this.birthday = birthday;
+//    }
 
     public int getActive() {
         return active;

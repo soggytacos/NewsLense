@@ -1,10 +1,8 @@
 package org.launchcode.controllers;
 
-import org.launchcode.models.Article;
-import org.launchcode.models.Category;
-import org.launchcode.models.CuratedTopic;
+import org.launchcode.models.classes.Article;
+import org.launchcode.models.classes.CuratedTopic;
 import org.launchcode.models.data.ArticleDao;
-import org.launchcode.models.data.CategoryDao;
 import org.launchcode.models.data.CuratedTopicDao;
 import org.launchcode.models.forms.AddCuratedTopicForm;
 import org.springframework.beans.factory.annotation.Autowired;

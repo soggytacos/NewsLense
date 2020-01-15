@@ -1,6 +1,6 @@
 package org.launchcode.models.data;
 
-import org.launchcode.models.Category;
+import org.launchcode.models.classes.Category;
 import org.springframework.data.repository.CrudRepository; //specifies the methods that allow database interaction.
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;

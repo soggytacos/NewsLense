@@ -1,4 +1,4 @@
-package org.launchcode.models;
+package org.launchcode.models.classes;
 
 import javax.persistence.*;
 
@@ -8,7 +8,7 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int role_id;
 
     private String role;
 

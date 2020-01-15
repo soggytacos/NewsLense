@@ -11,10 +11,14 @@
 <body>
 
 <nav th:fragment="navigation">
-    <a href="/article">List</a>  |
+    <a href="/article">Home</a>  |
     <a href="/article/post">Post New Article</a>  |
     <a href="/article/remove">Remove</a>  |
-    <a href="/category">Categories</a>
+    <a href="/category">Categories</a>  |
+    <a href="/user/profile">Profile</a>  |
+    <form href="/authentication/login" th:action="@{/logout}" method="get">
+        <button name="registration" type="submit">Logout</button>
+    </form>
 </nav>
 
 <h2 th:fragment="radio-rate">
@@ -25,6 +29,8 @@
     <input type="radio" name="overall" value="4">4<br>
     <input type="radio" name="overall" value="5">5<br>
 </h2>
+
+
 
 </body>
 </html>

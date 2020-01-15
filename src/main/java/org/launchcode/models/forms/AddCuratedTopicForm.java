@@ -1,7 +1,7 @@
 package org.launchcode.models.forms;
 
-import org.launchcode.models.Article;
-import org.launchcode.models.CuratedTopic;
+import org.launchcode.models.classes.Article;
+import org.launchcode.models.classes.CuratedTopic;
 
 import javax.validation.constraints.NotNull;
 

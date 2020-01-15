@@ -1,4 +1,4 @@
-package org.launchcode;
+package org.launchcode.configuration;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

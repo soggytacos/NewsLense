@@ -15,12 +15,20 @@
             <th>Title</th>
             <th>Content</th>
             <th>Category</th>
+            <th>Overall</th>
+            <th>Factual</th>
+            <th>Opinionated</th>
+            <th>Biased</th>
         </tr>
 
         <tr th:each="article : ${articles}">
             <td><a th:href="'/article/view/' + ${article.id}" th:text="${article.articleTitle}">Link</a></td>
             <td th:text="${article.articleContent}"></td>
             <td th:text="${article.category.name}"></td>
+            <td th:text="${article.getRatingSummary().get(0)}"></td>
+            <td th:text="${article.getRatingSummary().get(1)}"></td>
+            <td th:text="${article.getRatingSummary().get(2)}"></td>
+            <td th:text="${article.getRatingSummary().get(3)}"></td>
         </tr>
 
     </table>

@@ -1,7 +1,7 @@
 package org.launchcode.service;
 
-import org.launchcode.models.Role;
-import org.launchcode.models.User;
+import org.launchcode.models.classes.Role;
+import org.launchcode.models.classes.User;
 import org.launchcode.models.data.RoleDao;
 import org.launchcode.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
